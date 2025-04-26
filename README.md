@@ -124,7 +124,7 @@ A normalized score between 0 and 1 derived from O*NET context scores:
 
 ### 1. Automation Risk Score by Occupation
 
-![Automation Risk Score by Occupation](./DATA/Automation%20Risk%20Score%20by%20Occupation.png)  
+![Automation Risk Score by Occupation](./Automation%20Risk%20Score%20by%20Occupation.png)    
 This chart shows how likely each job is to be automated (0 = low, 1 = high).  
 - Construction Laborers, Data Entry Keyers, and Truck Drivers face the highest risk.  
 - Accountants have the lowest automation risk.  
@@ -134,7 +134,7 @@ This chart shows how likely each job is to be automated (0 = low, 1 = high).
 
 ### 2. Automation Risk vs. Projected Job Growth
 
-![Automation Risk vs. Projected Job Growth](./DATA/Automation%20Risk%20vs.%20Projected%20Job%20Growth.png)  
+![Automation Risk vs. Projected Job Growth](./Automation%20Risk%20vs.%20Projected%20Job%20Growth.png) 
 This scatter plot compares automation risk with projected job growth by state.  
 - Truck Drivers and Construction Laborers are high risk but still growing.  
 - Data Entry Keyers show both high risk and declining growth.  
@@ -144,7 +144,7 @@ This scatter plot compares automation risk with projected job growth by state.
 
 ### 3. Average Employment by State (2019–2022)
 
-![Average Employment by State](./DATA/Average%20Employment%20by%20State%20(2019-2022).png)  
+![Average Employment by State](./Average%20Employment%20by%20State%20(2019-2022).png)  
 This U.S. map shows average employment in California, Illinois, and Mississippi.  
 - California has the highest average employment.  
 - Mississippi has the lowest, reflecting a smaller labor force.  
@@ -154,7 +154,7 @@ This U.S. map shows average employment in California, Illinois, and Mississippi.
 
 ### 4. Employment Trends by State & Occupation (2019–2022)
 
-![Employment Trends by State & Occupation](./DATA/Employment%20Trends%20by%20State%20&%20Occupation%20(2019-2022).png)  
+![Employment Trends by State & Occupation](./Employment%20Trends%20by%20State%20&%20Occupation%20(2019-2022).png)  
 Each panel tracks job trends for one occupation across the three states.  
 - Truck Drivers and Construction Laborers are rising.  
 - Data Entry and Production Workers are declining — possible automation effects.  
@@ -164,7 +164,7 @@ Each panel tracks job trends for one occupation across the three states.
 
 ### 5. National Employment Trends by Occupation
 
-![National Employment Trends by Occupation](./DATA/National%20Employment%20Trends%20by%20Occupation.png)  
+![National Employment Trends by Occupation](./National%20Employment%20Trends%20by%20Occupation.png)
 This chart shows national job trends over time (2017–2022).  
 - Customer Service Reps have the largest employment overall.  
 - Data Entry and Production jobs show consistent decline.  
@@ -174,7 +174,7 @@ This chart shows national job trends over time (2017–2022).
 
 ### 6. Top Skill Importance by Occupation
 
-![Top Skill Importance by Occupation](./DATA/Top%20Skill%20Importance%20by%20Occupation.png)  
+![Top Skill Importance by Occupation](./Top%20Skill%20Importance%20by%20Occupation.png)   
 Displays the most important skill for each occupation.  
 - Reading Comprehension dominates across most jobs.  
 - Speaking is critical for manual labor roles.  
@@ -185,7 +185,7 @@ Displays the most important skill for each occupation.
 
 ### 7. Top Work Activity by Occupation
 
-![Top Work Activity by Occupation](./DATA/Top%20Work%20Activity%20by%20Occupation.png)  
+![Top Work Activity by Occupation](./Top%20Work%20Activity%20by%20Occupation.png)   
 Shows the top daily task for each job type.  
 - Manual labor = “Handling and Moving Objects”  
 - Office jobs = “Entering/Recording Information”  
