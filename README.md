@@ -166,7 +166,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 1. National Employment Trends
 
-![National Employment Trends](images/national_trends.png)
+![National Employment Trends](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/National%20employment%20trends%20by%20occupation.png?raw=true)
 
 - Customer Service jobs show a slight national decline after 2020.  
 - Accountants remain relatively stable across all years.  
@@ -175,7 +175,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 2. State Employment Trends
 
-![State Employment Trends](images/state_trends.png)
+![State Employment Trends](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/State%20employment%20trends%20by%20occupation.png?raw=true)
 
 - California consistently reports higher employment numbers across occupations.  
 - Mississippi shows the lowest employment volume, especially in high-risk jobs.  
@@ -184,7 +184,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 3. Projected Job Growth by Occupation
 
-![Projected Job Growth](images/projected_growth.png)
+![Projected Job Growth](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/Projected%20job%20growth%20by%20occupation.png?raw=true)
 
 - Construction Laborers and Truck Drivers are projected to grow.  
 - Data Entry jobs are projected to decline sharply due to automation.  
@@ -193,7 +193,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 4. Automation Risk vs. Projected Growth
 
-![Automation vs Growth](images/automation_vs_growth.png)
+![Automation vs Growth](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/Automation%20Risk%20Vs%20Projected%20Job%20Growth.png?raw=true)
 
 - High automation risk correlates with negative job growth (e.g., Data Entry).  
 - Occupations like Accountants show low automation risk and positive growth.  
@@ -202,7 +202,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 5. Top Skills by Occupation
 
-![Top Skills](images/top_skills.png)
+![Top Skills](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/Top%20Skill%20Importance%20by%20Occupation.png?raw=true)
 
 - Critical Thinking and Active Listening are top-rated across most occupations.  
 - These skills are strongly associated with lower automation exposure.  
@@ -211,7 +211,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 6. Top Work Activities by Occupation
 
-![Top Activities](images/top_activities.png)
+![Top Activities](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/Top%20work%20activities%20by%20occupation.png?raw=true)
 
 - Manual tasks like Documenting/Recording Information dominate at-risk jobs.  
 - Cognitive and procedural tasks appear more in safer roles.  
@@ -220,7 +220,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 7. Skill Intensity vs. Automation Risk
 
-![Skill vs Risk](images/skill_vs_risk.png)
+![Skill vs Risk](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/Skill%20Intensity%20vs%20Automation%20Risk.png?raw=true)
 
 - Clear inverse relationship: higher skill intensity = lower automation risk.  
 - Jobs that emphasize human-centric skills are significantly safer.  
