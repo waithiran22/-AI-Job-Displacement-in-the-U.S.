@@ -166,7 +166,7 @@ That said, clustering remains a valid future direction if more occupations and b
 
 ### 1. National Employment Trends
 
-![National Employment Trends](https://github.com/waithiran22/ai-job-displacement/blob/main/Visualizations/National%20employment%20trends%20by%20occupation.png?raw=true)
+<img src="Visualizations/National%20employment%20trends%20by%20occupation.png" width="450" height="300">
 
 - Customer Service jobs show a slight national decline after 2020.  
 - Accountants remain relatively stable across all years.  
