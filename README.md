@@ -1,24 +1,34 @@
 # AI & Job Displacement in the U.S. Labor Market
 
-This project explores how artificial intelligence and automation are transforming the U.S. labor market. It identifies which jobs and regions are most vulnerable, examines skill-based protections, and provides data-driven visualizations and insights.
+<p align="center">
+  <img src="banner.png" width="800">
+</p>
 
 ---
 
-## Table of Contents
+![Made with R](https://img.shields.io/badge/Made%20with-R-blue?logo=r)
+![Dashboard](https://img.shields.io/badge/Shiny-Dashboard-success?logo=rstudio)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+
+## Overview
+
+Artificial Intelligence (AI) and automation are reshaping the future of work. This project explores how automation risk varies across U.S. occupations and states, and how **skills** can protect workers from displacement.  
+
+Key outputs include:
+-  **Visualizations** of national & state job trends
+-  **Skill Intensity Analysis** (critical thinking, active listening, etc.)
+-  **Automation Risk Scores** by occupation
+-  **Shiny Dashboard**
+---
+
+## Table of Contents
 - [Overview](#overview)
-- [Scope of Study](#scope-of-study)
+- [Scope](#scope-of-study)
 - [Data Sources](#data-sources)
-- [Data Collection & Preparation](#data-collection--preparation)
 - [Methodology](#methodology)
-- [Visualizations and Results](#visualizations-and-results)
+- [Visualizations](#visualizations-and-results)
 - [Key Insights](#key-insights)
-  - [By Occupation](#by-occupation)
-  - [By State](#by-state)
-  - [Skill Intensity](#skill-intensity)
-- [Limitations](#limitations)
-- [Tools Used](#tools-used)
-- [Contact and Contributions](#contact-and-contributions)
 
 ---
 
@@ -38,23 +48,42 @@ Artificial Intelligence (AI) and automation are reshaping the future of work. Th
 
 ### Occupations Analyzed:
 
-- Accountants & Auditors
-- Customer Service Representatives
-- Data Entry Keyers
-- Construction Laborers
-- Production Workers
-- Truck Drivers
+### High-Risk (Repetitive / Blue-Collar)
+
+*-Data Entry Keyers*: Routine, clerical → very vulnerable to AI/automation.
+
+*-Production Workers:* Repetitive, machine-facing → high automation exposure.
+
+*-Truck Drivers:* Routine, physical → automation risk from self-driving tech, but demand persists.
+
+### Medium-Risk (Service-Oriented / Mixed Skill)
+
+*-Customer Service Representatives*: — chatbots & AI assistants replace some tasks, but human interaction still valuable.
+
+*-Construction Laborers:* Some automation risk, but variability in job sites and physical adaptability provide protection.
+
+### Low-Risk (Analytical / White-Collar)
+
+*Accountants & Auditors*: High cognitive/analytical demands, low risk. Jobs rely heavily on judgment, regulation, and interpretation.
+
+---
 
 ### States Covered:
 
-- California
-- Illinois
-- Mississippi
+- California : As a tech hub with Silicon Valley and a diversified economy, California illustrates how automation reshapes urban, high-skill labor markets.
+  
+- Illinois : With Chicago’s finance and logistics sector alongside midwestern manufacturing, Illinois represents a balanced “middle ground” between high-skill and at-risk jobs.
+  
+- Mississippi: As a rural, less diversified economy with heavy reliance on manual labor, Mississippi highlights the heightened displacement risk from automation and limited upskilling pathways
+  
+---
 
 ### Timeline:
 
 - Historical: 2017–2022
 - Projected: 2022–2032
+
+---
 
 ### Core Research Questions:
 
@@ -74,6 +103,8 @@ Artificial Intelligence (AI) and automation are reshaping the future of work. Th
 | Context Scores | O*NET | Automation risk estimation |
 | Worker Profiles | O*NET | Skill & task importance per job |
 
+---
+
 ### Automation Score Formula:
 
 ```r
@@ -91,240 +122,110 @@ automation_score = 1 - (context_score / 100)
 ---
 
 ## Data Collection & Preparation
-
-- Data for this project was sourced through the **U.S. Bureau of Labor Statistics (BLS) and O*NET databases.** 
-
-- The OEWS national and state-level Excel files were manually downloaded and imported using the readxl package.
-   
-- For historical analysis, national-level employment data from 2017 to 2022 was compiled and cleaned using janitor and dplyr. Employment projections (2022–2032) were added manually via **structured interpolation to estimate 2027 midpoint values, which helped us identify short-term risk without overrelying on full-decade estimates.**
-  
-- **Context Scores** were extracted from O*NET's database and ** used to generate an automation risk metric.** These values were **joined with occupational codes** (SOC codes) after trimming inconsistencies in formatting using stringr.
-
-- **Worker Profile data** was scraped and **compiled from O*NET's value importance ratings and activity ratings.**
-
-- **Skill intensity scores** were averaged across multiple traits (e.g., critical thinking, active listening, complex problem-solving) to construct a composite skill index.
-
-- State-level location quotient and employment data were processed for three specific states—California, Illinois, and Mississippi—to compare employment dynamics across urban, semi-industrial, and rural settings. Missing data was handled using conditional pipelines and fallback strategies to ensure smooth joins.
-
-- This preprocessing pipeline resulted in three harmonized datasets: **national trends, state trends, and occupational profiles with risk scores.**
+- Downloaded BLS + O*NET data (employment, wages, skills, tasks).  
+- Cleaned data using `janitor` + `dplyr` (R).  
+- Handled missing values with conditional pipelines.  
+- Linear interpolation for midpoint projections (2027).  
+- Built harmonized datasets:
+  - National trends  
+  - State trends  
+  - Occupation profiles with risk scores  
 
 ---
 
-## Methodology
-
-### Data Cleaning:
-
-- Standardized column names using janitor::clean_names().
-- Converted all relevant numeric fields, removed commas from number strings, and aligned occupation codes.
-
-### Projections:
-
-- Calculated 2027 estimates using linear interpolation:
-
-```r
-projected_2027 = emp_2022 + ((emp_2032 - emp_2022) * 0.5)
-```
----
-### Skill Intensity Score
-
-Each job’s average skill score was derived by taking the mean of the top 3 rated skills from O*NET:
-
-```r
-skill_avg = mean(c(value_1, value_2, value_3), na.rm = TRUE)
-```
----
-### Logistic Regression Modeling
-
-To predict whether a job is at high risk of automation, a logistic regression model was built with the following specifications:
-
-- **Response Variable**:  
-  - `risk_binary`: 1 = High Risk (automation_score ≥ 0.75), 0 = Otherwise  
-
-- **Predictor Variables**:  
-  - `automation_score` (normalized from O*NET context score)  
-  - `a_mean` (average annual wage from OEWS data)  
-  - `projected_change_pct` (job growth estimate from 2022–2032, interpolated for 2027)  
-  - `skill_avg` (mean of top skill ratings per occupation)  
-  - `loc_quotient` (state location quotient where available)  
-
-The model was evaluated for accuracy and interpretability. Although it performed reasonably, feature correlation and dataset size limited deeper modeling.
+### Methodology
+- **Data Cleaning**: Standardized SOC codes, removed inconsistencies.  
+- **Projections**: Linear midpoint for 2027 from 2022–2032 forecasts.  
+- **Skill Intensity**: Average of top 3 skills per occupation.  
+- **Modeling**: Logistic regression to predict high-risk jobs using:
+  - Automation score  
+  - Wage  
+  - Projected job growth  
+  - Skill intensity  
+  - Location quotient  
 
 ---
 
 ### Why Clustering Was Not Finalized
-
-Originally, Ward’s hierarchical clustering was implemented to group occupations by risk and skill intensity. However, clustering was ultimately not included in the final report due to:
-
-- **Small dataset**: Only six occupations across three states, which leads to unstable clusters  
-- **High within-group variance**: Occupations vary too widely in their skill and wage profiles  
-- **Dimensional limitations**: With few features and entities, clustering results were misleading and not generalizable  
-
-That said, clustering remains a valid future direction if more occupations and broader dimensions are included (e.g., tech exposure, job task decomposition).
-
+>  Clustering was explored but excluded due to small sample size (6 occupations × 3 states).
+ 
 ---
 ## Visualizations and Results
 
 ### 1. National Employment Trends
 
 <img src="National%20employment%20trends%20by%20occupation.PNG" width="700">
-
-- Customer Service jobs show a slight national decline after 2020.  
-- Accountants remain relatively stable across all years.  
-
 ---
 
 ### 2. State Employment Trends
 
 <img src="State%20employment%20trends%20by%20occupation.PNG" width="700">
-
-- California consistently reports higher employment numbers across occupations.  
-- Mississippi shows the lowest employment volume, especially in high-risk jobs.  
-
 ---
 
 ### 3. Projected Job Growth by Occupation
 
 <img src="Projected%20job%20growth%20by%20occupation.PNG" width="700">
-
-- Construction Laborers and Truck Drivers are projected to grow.  
-- Data Entry jobs are projected to decline sharply due to automation.  
-
 ---
 
 ### 4. Automation Risk vs. Projected Growth
 
 <img src="Automation%20Risk%20Vs%20Projected%20Job%20Growth.PNG" width="700">
-
-- High automation risk correlates with negative job growth (e.g., Data Entry).  
-- Occupations like Accountants show low automation risk and positive growth.  
-
 ---
 
 ### 5. Top Skills by Occupation
 
 <img src="Top%20Skill%20Importance%20by%20Occupation.PNG" width="700">
-
-- Critical Thinking and Active Listening are top-rated across most occupations.  
-- These skills are strongly associated with lower automation exposure.  
-
 ---
 
 ### 6. Top Work Activities by Occupation
 
 <img src="Top%20work%20activities%20by%20occupation.PNG" width="700">
-
-- Manual tasks like Documenting/Recording Information dominate at-risk jobs.  
-- Cognitive and procedural tasks appear more in safer roles.  
-
 ---
 
 ### 7. Skill Intensity vs. Automation Risk
 
 <img src="Skill%20Intensity%20vs%20Automation%20Risk.PNG" width="700">
-
-- Clear inverse relationship: higher skill intensity = lower automation risk.  
-- Jobs that emphasize human-centric skills are significantly safer.  
 ---
 
 ## Key Insights
 
 ### By Occupation
 
-- **Data Entry Keyers**
-  - Highest automation risk score (~0.90+).
-  - Sharp employment decline nationally.
-  - Projected to shrink by over 25% by 2027.
-  - Low skill intensity and heavy task repetition.
-
-- **Truck Drivers**
-  - High automation risk due to routine, physical tasks.
-  - Yet projected to grow due to sustained demand in delivery/logistics.
-  - Skill intensity moderate, but growth driven by labor shortages.
-
-- **Customer Service Representatives**
-  - Medium automation risk.
-  - Modest employment decline post-2020.
-  - Skills like active listening and service orientation reduce displacement risk.
-
-- **Accountants & Auditors**
-  - Low automation risk due to analytical and cognitive skill demands.
-  - Employment remains stable or slightly growing.
-  - High skill intensity—critical thinking, attention to detail, communication.
-
-- **Production Workers**
-  - Among the highest automation risk groups.
-  - Moderate decline in employment from 2017–2022.
-  - Tasks like equipment monitoring and object handling are highly automatable.
-
-- **Construction Laborers**
-  - Medium risk.
-  - Strong projected growth due to sustained infrastructure needs.
-  - Blend of physical/manual tasks with some variability protects against full automation.
-
+- **Data Entry Keyers** → Highest automation risk (~0.90), projected decline >25% by 2027.  
+- **Truck Drivers** → High automation risk, but demand growth offsets displacement.  
+- **Accountants** → Low risk, stable growth due to analytical skill demand.  
+- **Production Workers** → High risk, moderate decline in employment.  
 ---
 
 ### By State
 
-- **California**
-  - Highest employment levels across nearly all occupations.
-  - More diverse industry mix contributes to greater job resilience.
-  - Urban tech ecosystems (e.g., Bay Area) may accelerate or offset automation risk depending on sector.
-
-- **Illinois**
-  - Stable employment in most roles.
-  - Balanced mix of high- and medium-risk jobs.
-  - Urban centers like Chicago offer greater reskilling opportunities.
-
-- **Mississippi**
-  - Lowest employment levels.
-  - Highest concentration of high-risk jobs (Production, Data Entry).
-  - Fewer skill-building and transition pathways, increasing displacement vulnerability.
+- **California** → Highest employment levels, more resilient due to industry diversity.  
+- **Illinois** → Balanced risk distribution, reskilling opportunities in urban hubs.  
+- **Mississippi** → Lowest employment levels, most concentrated in high-risk jobs.  
 
 ---
 
 ### Skill Intensity
 
-- Occupations with higher skill intensity (e.g., speaking, critical thinking, problem-solving) show significantly lower automation risk.
-- Jobs requiring routine, repetitive tasks—especially with low education or tech exposure—are the most automatable.
-- Skill-focused interventions (upskilling, internal mobility) are crucial to mitigate displacement.
+- Higher skill intensity = significantly lower automation risk.  
+- Cognitive & human-centric skills (critical thinking, communication) = best protection.
 
 ---
 ## Limitations
 
-- **Public Data Granularity**: Government datasets (e.g., BLS, O*NET) aggregate occupations and update annually, limiting real-time analysis or task-level automation insights.
+- Aggregated government datasets (BLS, O*NET) update annually.  
+- Narrow focus (6 occupations, 3 states).  
+- Linear projections may not capture disruptive shocks.  
+- O*NET skill ratings may lag behind emerging trends.  
 
-- **Sample Scope by Design**: A narrow focus on 6 key occupations and 3 representative states was chosen to prioritize interpretability and clarity over breadth.
-
-- **Clustering Exclusion**: Clustering was initially explored but excluded due to low sample size and high dimensional variance. Including it would have risked misleading interpretations without more data.
-
-- **Linear Projections**: Job growth estimates for 2027 were interpolated from 2022 and 2032 values due to limited projection intervals from the BLS. This assumes linear job trends which may not fully reflect industry disruptions.
-
-- **Skill Ratings May Lag**: O*NET skill importance scores are based on periodic surveys and expert input, which may not fully capture fast-changing job requirements due to AI or tech adoption.
-
-- **API Access Limits**: Real-time job market APIs (e.g., Indeed, LinkedIn) were considered but not used due to access restrictions and rate limits that would have required institutional credentials or paid tiers.
-
-- **No Macroeconomic Controls**: The analysis does not include broader economic shocks (e.g., recessions, COVID-19 recovery), which may affect employment trends beyond automation.
----
 
 ## Tools Used
 
-| Tool           | Purpose                      |
-|----------------|------------------------------|
-| **R**          | Core scripting environment   |
-| **ggplot2**    | Data visualizations (static) |
-| **plotly**     | Interactive plots            |
-| **usmap**      | U.S. choropleth mapping      |
-| **shiny**      | Web-based dashboard          |
-| **janitor**    | Data cleaning                |
-| **dplyr**      | Data wrangling               |
-| **readxl**     | Excel file import            |
-| **stringr**    | Text and code formatting     |
-| **shinythemes**| Themed UI elements           |
+- **R** → Core analysis  
+- **ggplot2** → Visualizations  
+- **plotly** → Interactive plots  
+- **usmap** → Choropleth mapping  
+- **shiny** → Dashboard  
+- **janitor, dplyr, stringr** → Cleaning & wrangling
 
 ---
-
-### Contact and Contributions
-
-- This project was created by **Waithira Ng’ang’a**  
-- B.A. in Business Analytics and Marketing, Augustana College
-- Feel free to fork the repository, open issues, or submit pull requests for improvements or extensions.
