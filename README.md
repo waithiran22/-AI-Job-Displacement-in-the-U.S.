@@ -7,7 +7,6 @@
 ---
 
 ![Made with R](https://img.shields.io/badge/Made%20with-R-blue?logo=r)
-![Dashboard](https://img.shields.io/badge/Shiny-Dashboard-success?logo=rstudio)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
@@ -15,11 +14,6 @@
 
 Artificial Intelligence (AI) and automation are reshaping the future of work. This project explores how automation risk varies across U.S. occupations and states, and how **skills** can protect workers from displacement.  
 
-Key outputs include:
--  **Visualizations** of national & state job trends
--  **Skill Intensity Analysis** (critical thinking, active listening, etc.)
--  **Automation Risk Scores** by occupation
--  **Shiny Dashboard**
 ---
 
 ## Table of Contents
